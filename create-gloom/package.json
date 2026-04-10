@@ -1,0 +1,22 @@
+{
+  "name": "create-gloom",
+  "version": "0.1.0",
+  "description": "Scaffold Gloom templates",
+  "keywords": [
+    "create",
+    "gloom",
+    "nextjs",
+    "template"
+  ],
+  "license": "MIT",
+  "bin": {
+    "create-gloom": "./src/index.mjs"
+  },
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "dependencies": {
+    "degit": "^2.8.4"
+  }
+}

@@ -1,3 +1,6 @@
+packages:
+  - create-gloom
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

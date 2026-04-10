@@ -38,33 +38,35 @@ Commonly customized areas:
 
 ## Getting started
 
-1. Install dependencies:
+Use the CLI to scaffold this template:
 
 ```bash
+pnpm create gloom next
+```
+
+Then:
+
+```bash
+cd <your-project-name>
+cp .env.example .env
 pnpm install
 ```
 
-2. Create env files:
-
-```bash
-cp .env.example .env
-```
-
-3. Configure required variables in `.env`:
+Configure required variables in `.env`:
 
 - `BETTER_AUTH_SECRET`
 - `BETTER_AUTH_URL`
 - `NEXT_PUBLIC_BETTER_AUTH_URL`
 - `DATABASE_URL`
 
-4. Prepare database:
+Prepare database:
 
 ```bash
 pnpm exec prisma generate
 # then run your preferred migrate/push flow
 ```
 
-5. Start development server:
+Start development server:
 
 ```bash
 pnpm dev
