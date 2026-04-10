@@ -1,4 +1,4 @@
-# Next.js Starter Template (Gloom)
+# Next.js Starter Template
 
 A production-ready starter built on **Next.js App Router** with authentication, Prisma-backed persistence, reusable UI primitives, and a baseline testing stack.
 
