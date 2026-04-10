@@ -1,18 +1,23 @@
 import { getSessionCookie } from 'better-auth/cookies';
+import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { auth } from './lib/auth';
+
 export async function proxy(request: NextRequest) {
-  const sessionCookie = getSessionCookie(request);
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   const { pathname } = request.nextUrl;
 
   // Redirect authenticated users away from login/signup pages
-  if (sessionCookie && ['/login', '/register'].includes(pathname)) {
+  if (session && ['/login', '/register'].includes(pathname)) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // Redirect unauthenticated users trying to access protected routes
-  if (!sessionCookie && pathname.startsWith('/dashboard')) {
+  if (!session && pathname.startsWith('/dashboard')) {
     return NextResponse.redirect(new URL('/register', request.url));
   }
 
