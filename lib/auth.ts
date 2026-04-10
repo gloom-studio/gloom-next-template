@@ -3,8 +3,14 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { nextCookies } from 'better-auth/next-js';
 
 import prisma from '@/lib/prisma';
+
+const betterAuthBaseUrl = process.env.BETTER_AUTH_URL;
+if (!betterAuthBaseUrl) {
+  throw new Error('BETTER_AUTH_URL is required');
+}
+
 export const auth = betterAuth({
-  baseURL: process.env.BETTER_AUTH_URL as string,
+  baseURL: betterAuthBaseUrl,
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
