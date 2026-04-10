@@ -1,4 +1,3 @@
-import { getSessionCookie } from 'better-auth/cookies';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -16,15 +15,15 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  // Redirect unauthenticated users trying to access protected routes
+  // Redirect unauthenticated users trying to access protected routes and update this if you add or remove routes
   if (!session && pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/register', request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  // Apply middleware to these routes
+  // Apply middleware to these routes - please remember to update this if you add or remove routes :)
   matcher: ['/dashboard', '/login', '/register'],
 };
