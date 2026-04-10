@@ -64,6 +64,10 @@
     "node_modules",
     "*.config.js",
     "*.config.mjs",
-    "*.config.cjs"
+    "*.config.cjs",
+    "vitest.config.ts",
+    "playwright.config.ts",
+    "tests/**",
+    "scripts/test/**"
   ]
 }

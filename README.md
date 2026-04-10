@@ -28,6 +28,52 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Testing
+
+This template includes **Vitest** + **Testing Library** for fast unit/component tests and **Playwright** for end-to-end checks (auth + protected routes).
+
+### Prerequisites
+
+- Copy [`.env.example`](./.env.example) to `.env` / `.env.local` and set at least `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, and `NEXT_PUBLIC_BETTER_AUTH_URL`.
+- Run Prisma against your database (see your usual `pnpm exec prisma` workflow) so the Better Auth tables exist.
+- Generate the Prisma client if needed (`pnpm exec prisma generate`).
+
+### Unit / component tests
+
+```bash
+pnpm test:unit
+pnpm test:unit:watch
+```
+
+Tests live under [`tests/unit/`](./tests/unit/).
+
+### End-to-end tests
+
+Install the Playwright browser once per machine:
+
+```bash
+pnpm test:e2e:install
+```
+
+`pnpm test:e2e` starts `pnpm dev` automatically (unless you reuse an existing server locally), runs [`tests/e2e/global-setup.ts`](./tests/e2e/global-setup.ts) to **reset and seed** a deterministic user, then runs specs in [`tests/e2e/`](./tests/e2e/).
+
+Default credentials (override with env vars from `.env.example`):
+
+- Email: `e2e-user@test.local`
+- Password: `E2e_pass_1!`
+
+To seed manually while a dev server is already running:
+
+```bash
+pnpm test:seed
+```
+
+Run everything (format/lint not included):
+
+```bash
+pnpm test:all
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
