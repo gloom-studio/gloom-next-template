@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+After cloning (or creating a repo from this template), install dependencies once. The `prepare` script in `package.json` runs **Husky** automatically during that install, so Git hooks are wired up—you do not need to run `pnpm run prepare` by hand.
+
+Use a normal install and avoid skipping lifecycle scripts (`pnpm install --ignore-scripts` will skip Husky). In Docker or CI where hooks are not needed, you can set `HUSKY=0` for that install.
+
+```bash
+pnpm install
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
