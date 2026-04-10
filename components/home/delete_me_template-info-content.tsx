@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 
@@ -28,6 +29,13 @@ export function TemplateInfoContent() {
               Register
             </Button>
           </Link>
+          {/* Add Button that triggers sonner toast */}
+          <Button
+            className="bg-white text-black hover:cursor-pointer hover:bg-white/80 hover:text-black"
+            onClick={() => toast.success('Hello, world!')}
+          >
+            Toast
+          </Button>
         </div>
       </div>
     </main>
