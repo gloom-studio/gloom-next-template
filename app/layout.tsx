@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Figtree } from 'next/font/google';
 
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeToggleButton } from '@/components/theme-toggle-button';
+import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 
@@ -43,7 +45,11 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <ThemeToggleButton />
+          <TooltipProvider>
+            {children}
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
