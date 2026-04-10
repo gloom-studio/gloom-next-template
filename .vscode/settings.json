@@ -1,0 +1,58 @@
+{
+  "files.readonlyInclude": {
+    "**/next-env.d.ts": true,
+    "**/.next/**": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+  "search.exclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "pnpm-lock.yaml": true,
+    "bun.lock": true
+  },
+
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, next-env.d.ts",
+    "next.config.*": "postcss.config.*, tailwind.config.*, components.json, middleware.ts, vitest.config.*, playwright.config.*, eslint.config.*, prisma.config.ts",
+    "package.json": "package-lock.json, pnpm-lock.yaml, pnpm-workspace.yaml, pnpm*, .yarnrc*, yarn*, .editorconfig, .gitattributes, .oxfmtrc.json, .oxlintrc.json, oxfmt.config.*, oxlint.config.*, commitlint.config.*, bun.lock"
+  },
+
+  // use LF line endings
+  "files.eol": "\n",
+
+  // disable prettier, eslint, biome
+  "prettier.enable": false,
+  "eslint.enable": false,
+  "biome.enabled": false,
+  // enable oxc
+  "oxc.enable": true,
+
+  // enable oxc formatter
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  }
+}

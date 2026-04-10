@@ -51,6 +51,10 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "*": "oxfmt --no-error-on-unmatched-pattern"
+    "**/*.{js,jsx,mjs,cjs,ts,tsx}": [
+      "oxfmt",
+      "oxlint --type-aware --type-check --fix"
+    ],
+    "**/*.{json,css,md,mdx}": "oxfmt"
   }
 }
