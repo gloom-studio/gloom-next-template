@@ -21,7 +21,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, next-env.d.ts",
-    "next.config.*": "postcss.config.*, tailwind.config.*, components.json, middleware.ts, vitest.config.*, playwright.config.*, eslint.config.*, prisma.config.ts",
+    "next.config.*": "postcss.config.*, tailwind.config.*, components.json, proxy.ts, vitest.config.*, playwright.config.*, eslint.config.*, prisma.config.ts",
     "package.json": "package-lock.json, pnpm-lock.yaml, pnpm-workspace.yaml, pnpm*, .yarnrc*, yarn*, .editorconfig, .gitattributes, .oxfmtrc.json, .oxlintrc.json, oxfmt.config.*, oxlint.config.*, commitlint.config.*, bun.lock"
   },
 
