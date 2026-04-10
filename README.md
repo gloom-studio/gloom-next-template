@@ -146,15 +146,10 @@ This template includes GitHub Actions workflows in [`.github/workflows/`](./.git
   - `pnpm exec tsc --noEmit`
   - `pnpm test:unit`
   - `pnpm build`
-- `deploy-vercel.yml` - deploys on push to `main` (and manual dispatch)
-  - `vercel pull`
-  - `vercel build --prod`
-  - `vercel deploy --prebuilt --prod`
-
-For Vercel deploy workflow, set these GitHub repository secrets:
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-If you deploy to another platform, keep `ci.yml` and replace `deploy-vercel.yml` with your provider's deployment workflow.
+- `prisma-check.yml` - runs on Prisma-related changes
+  - `pnpm exec prisma validate`
+  - `pnpm exec prisma format --check`
+  - `pnpm exec prisma generate`
+- `security.yml` - dependency vulnerability checks
+  - on PR/push: `pnpm audit --audit-level=high`
+  - on daily schedule: `pnpm audit --audit-level=moderate`
