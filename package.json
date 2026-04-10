@@ -32,6 +32,6 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,mjs,cjs}": "npm run lint"
+    "*": "oxfmt --no-error-on-unmatched-pattern"
   }
 }
