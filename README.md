@@ -134,3 +134,22 @@ Before deploying:
 - set production env vars (`BETTER_AUTH_URL`, `NEXT_PUBLIC_BETTER_AUTH_URL`, `DATABASE_URL`, `BETTER_AUTH_SECRET`)
 - run Prisma generate/migrations in CI or release workflow
 - run `pnpm check` and tests in CI
+
+## CI/CD
+
+This template includes GitHub Actions workflows in [`.github/workflows/`](./.github/workflows/):
+
+- `ci.yml` - runs on pull requests and pushes to `main`
+  - install deps
+  - `pnpm format:check`
+  - `pnpm lint`
+  - `pnpm exec tsc --noEmit`
+  - `pnpm test:unit`
+  - `pnpm build`
+- `prisma-check.yml` - runs on Prisma-related changes
+  - `pnpm exec prisma validate`
+  - `pnpm exec prisma format --check`
+  - `pnpm exec prisma generate`
+- `security.yml` - dependency vulnerability checks
+  - on PR/push: `pnpm audit --audit-level=high`
+  - on daily schedule: `pnpm audit --audit-level=moderate`
