@@ -76,5 +76,6 @@
       "oxlint --type-aware --type-check --fix"
     ],
     "**/*.{json,css,md,mdx}": "oxfmt"
-  }
+  },
+  "packageManager": "pnpm@10.26.2"
 }
