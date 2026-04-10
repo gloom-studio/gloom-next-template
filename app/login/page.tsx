@@ -12,7 +12,6 @@ import { authClient } from '@/lib/auth-client';
 export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
   const form = useForm({
     defaultValues: {
@@ -21,14 +20,11 @@ export default function LoginPage() {
     },
     onSubmit: async ({ value }) => {
       setError(null);
-      setLoading(true);
 
       const { error: signInError } = await authClient.signIn.email({
         email: value.email,
         password: value.password,
       });
-
-      setLoading(false);
 
       if (signInError) {
         setError(signInError.message ?? 'Invalid email or password.');
@@ -119,13 +115,17 @@ export default function LoginPage() {
         </div>
         {error ? <p className="my-2 text-sm text-red-500">{error}</p> : null}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-md bg-foreground px-3 py-2 text-background disabled:opacity-60"
-        >
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
+        <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+          {([canSubmit, isSubmitting]) => (
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="w-full rounded-md bg-foreground px-3 py-2 text-background disabled:opacity-60"
+            >
+              {isSubmitting ? 'Logging in...' : 'Login'}
+            </button>
+          )}
+        </form.Subscribe>
 
         <p className="text-sm text-muted-foreground">
           No account?{' '}

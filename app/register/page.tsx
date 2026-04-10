@@ -22,7 +22,6 @@ function isStrongPassword(password: string) {
 export default function RegisterPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const form = useForm({
     defaultValues: {
       name: '',
@@ -30,21 +29,31 @@ export default function RegisterPage() {
       password: '',
       passwordConfirmation: '',
     },
+    validators: {
+      onChange: ({ value }) => {
+        if (value.passwordConfirmation.length === 0) {
+          return { passwordConfirmation: 'Password confirmation is required' };
+        }
+
+        if (value.password !== value.passwordConfirmation) {
+          return { passwordConfirmation: 'Password confirmation does not match.' };
+        }
+
+        return undefined;
+      },
+    },
     onSubmit: async ({ value }) => {
       setError(null);
-      setLoading(true);
 
       if (!isStrongPassword(value.password)) {
         setError(
           'Password must be at least 8 characters and include 1 lowercase, 1 uppercase, 1 number, and 1 symbol.',
         );
-        setLoading(false);
         return;
       }
 
       if (value.password !== value.passwordConfirmation) {
         setError('Password confirmation does not match.');
-        setLoading(false);
         return;
       }
 
@@ -53,8 +62,6 @@ export default function RegisterPage() {
         email: value.email,
         password: value.password,
       });
-
-      setLoading(false);
 
       if (signUpError) {
         setError(signUpError.message ?? 'Could not create account.');
@@ -279,13 +286,17 @@ export default function RegisterPage() {
 
         {error ? <p className="text-sm text-red-500">{error}</p> : null}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-md bg-foreground px-3 py-2 text-background disabled:opacity-60"
-        >
-          {loading ? 'Creating account...' : 'Create account'}
-        </button>
+        <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+          {([canSubmit, isSubmitting]) => (
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="w-full rounded-md bg-foreground px-3 py-2 text-background disabled:opacity-60"
+            >
+              {isSubmitting ? 'Creating account...' : 'Create account'}
+            </button>
+          )}
+        </form.Subscribe>
 
         <p className="text-sm text-muted-foreground">
           Already have an account?{' '}
