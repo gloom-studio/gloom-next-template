@@ -14,7 +14,8 @@ export default function Home() {
         <h1 className="text-4xl font-bold text-white">Gloom Studio Next.JS Starter Template</h1>
         <p className="text-center text-lg text-white">
           Comprises of Next.JS, Better Auth, Prisma, shadcn, Tailwind, Oxlint, Oxfmt, and MCP-first
-          workflows. Has all the rules and best practices for a production-ready application.
+          workflows. Testing with Playwright and Vitest. Has all the rules and best practices for a
+          production-ready application.
         </p>
         <div className="flex gap-4">
           <Link href="/login">
